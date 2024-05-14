@@ -1,0 +1,35 @@
+<div class="tabs-container">
+    <!-- UI for non small devices starts here -->
+    <div class="non-small-devices" *ngIf="currentScreenSize !== smallDeviceKeyString">
+        <div class="nav-options">
+            <div>
+                <button class="btn btn-link" name="prev-btn" id="prev-btn" (click)="goToPreviousTab()" [disabled]="tabItems.length === 0 || activeTabId === 0">&lt;</button>
+            </div>
+            <div class="tabs">
+                <ng-container *ngFor="let tab of tabItems;">
+                    <a class="btn btn-link" [ngClass]="{'active': tab?.title === selectedTab?.title}" name={{tab?.id}} id={{tab?.id}} (click)="tabClickHandler(tab)">{{tab?.title}}</a>
+                </ng-container>
+            </div>
+            <div>
+                <button class="btn btn-link" name="next-btn" id="next-btn" (click)="goToNextTab()" [disabled]="tabItems.length === 0 || activeTabId === (tabItems.length - 1)">&gt;</button>
+            </div>
+        </div>
+        <div class="tab-content">
+            <app-item-detail *ngIf="selectedTab" [tab]="selectedTab" (deleteTabHandler)="deleteTab($event)"></app-item-detail>
+        </div>
+    </div>
+    <!-- UI for non small devices ends here -->
+
+    <!-- UI for small devices starts here -->
+    <div class="small-devices" *ngIf="currentScreenSize === smallDeviceKeyString">
+        <ng-container *ngFor="let tab of tabItems;">
+            <app-item-detail [tab]="tab" (deleteTabHandler)="deleteTab($event)"></app-item-detail>
+        </ng-container>
+    </div>
+    <!-- UI for small devices ends here -->
+
+    <hr>
+    <div class="action-btns">
+        <button class="btn" name="reset-tab-btn" id="reset-tab-btn" (click)="reset()" [disabled]="allTabItems.length === tabItems.length">Reset</button>
+    </div>
+</div>

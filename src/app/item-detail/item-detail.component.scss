@@ -1,0 +1,28 @@
+.item-detail {
+    border: 1px solid #000;
+    border-radius: 1rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+
+    h2.title {
+        margin: 0 0 0.5rem 0;
+    }
+
+    .content {
+        margin: 1rem 0;
+        font-weight: 500;
+    }
+
+    .action-btns {
+        display: flex;
+        justify-content: right;
+
+        .btn {
+            margin: 0 1rem;
+            padding: 0.5rem;
+            background-color: #eee;
+            border: none;
+            cursor: pointer;
+        }
+    }
+}
